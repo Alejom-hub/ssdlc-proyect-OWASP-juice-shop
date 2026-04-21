@@ -10,16 +10,17 @@ permissions:
 
 jobs:
   semgrep-auth:
-    name: Authentication - Module
+    name: SAST - Authentication Module
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-            submodules: recursive
+          submodules: recursive
+
       - name: Install Semgrep
-        run: pip install semgrep==1.159.0
+        run: pip install semgrep==1.76.0
 
       - name: Run Semgrep on auth module
         run: |
@@ -33,7 +34,8 @@ jobs:
             juice-shop/routes/updateUserProfile.ts \
             juice-shop/models/user.ts \
             juice-shop/lib/insecurity.ts \
-            --json | python -m json.tool > reports/semgrep-auth-results.json
+            --json | python3 -m json.tool > reports/semgrep-auth-results.json
+        continue-on-error: true
 
       - name: Upload Semgrep results
         uses: actions/upload-artifact@v4
@@ -44,7 +46,7 @@ jobs:
       - name: Check for critical vulnerabilities
         run: |
           CRITICAL=$(python3 -c "
-          import json, sys
+          import json
           with open('reports/semgrep-auth-results.json') as f:
               data = json.load(f)
           critical = [r for r in data.get('results', []) if r.get('extra', {}).get('severity') == 'ERROR']
@@ -65,14 +67,25 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-          
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: juice-shop/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('juice-shop/package-lock.json') }}
+
       - name: Install dependencies
         run: |
           cd juice-shop
-          npm install --legacy--peer-deps
+          npm install --legacy-peer-deps
 
       - name: Run npm audit
-        run: | 
+        run: |
           cd juice-shop
           npm audit --json | python3 -m json.tool > ../reports/npm-audit-results.json
         continue-on-error: true
@@ -82,10 +95,16 @@ jobs:
         with:
           name: npm-audit-results
           path: reports/npm-audit-results.json
- 
+
       - name: Check for critical dependencies
         run: |
-          CRITICAL=$(grep -c '"severity":"critical"' reports/npm-audit-results.json || echo 0)
+          CRITICAL=$(python3 -c "
+          import json
+          with open('reports/npm-audit-results.json') as f:
+              data = json.load(f)
+          critical = data.get('metadata', {}).get('vulnerabilities', {}).get('critical', 0)
+          print(critical)
+          ")
           echo "Critical dependencies found: $CRITICAL"
           if [ "$CRITICAL" -gt 0 ]; then
             echo "Pipeline blocked: $CRITICAL critical vulnerable dependencies detected"
