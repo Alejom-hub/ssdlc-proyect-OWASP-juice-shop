@@ -262,42 +262,6 @@
         </div>
     </div>
 
-    <!-- ══════════════ RISK MATRIX ══════════════ -->
-    <h3 class="section-header">Risk Matrix</h3>
-    <div class="risk-matrix-wrapper mb-5">
-        <div class="risk-matrix-title">RISK MATRIX</div>
-        <div class="rm-impact-label">IMPACT</div>
-
-        <div class="rm-outer">
-            <span class="rm-prob-axis">PROBABILITY</span>
-            <div class="rm-grid">
-                <!-- Header row -->
-                <div class="rm-corner"></div>
-                <div class="rm-col-header">LOW</div>
-                <div class="rm-col-header">MEDIUM</div>
-                <div class="rm-col-header">HIGH</div>
-
-                <!-- HIGH probability row -->
-                <div class="rm-row-label">HIGH</div>
-                <div class="rm-cell rm-yellow">{{ risk_matrix.HIGH_LOW | join('<br>')|safe if risk_matrix.HIGH_LOW else '' }}</div>
-                <div class="rm-cell rm-orange">{{ risk_matrix.HIGH_MEDIUM | join('<br>')|safe if risk_matrix.HIGH_MEDIUM else '' }}</div>
-                <div class="rm-cell rm-red">{{ risk_matrix.HIGH_HIGH | join('<br>')|safe if risk_matrix.HIGH_HIGH else '' }}</div>
-
-                <!-- MEDIUM probability row -->
-                <div class="rm-row-label">MEDIUM</div>
-                <div class="rm-cell rm-green">{{ risk_matrix.MEDIUM_LOW | join('<br>')|safe if risk_matrix.MEDIUM_LOW else '' }}</div>
-                <div class="rm-cell rm-yellow">{{ risk_matrix.MEDIUM_MEDIUM | join('<br>')|safe if risk_matrix.MEDIUM_MEDIUM else '' }}</div>
-                <div class="rm-cell rm-orange">{{ risk_matrix.MEDIUM_HIGH | join('<br>')|safe if risk_matrix.MEDIUM_HIGH else '' }}</div>
-
-                <!-- LOW probability row -->
-                <div class="rm-row-label">LOW</div>
-                <div class="rm-cell rm-green">{{ risk_matrix.LOW_LOW | join('<br>')|safe if risk_matrix.LOW_LOW else '' }}</div>
-                <div class="rm-cell rm-green">{{ risk_matrix.LOW_MEDIUM | join('<br>')|safe if risk_matrix.LOW_MEDIUM else '' }}</div>
-                <div class="rm-cell rm-yellow">{{ risk_matrix.LOW_HIGH | join('<br>')|safe if risk_matrix.LOW_HIGH else '' }}</div>
-            </div>
-        </div>
-    </div>
-
     <!-- ══════════════ FINDINGS ══════════════ -->
     <h3 class="section-header">Hallazgos Detectados</h3>
     {% for r in results %}
@@ -404,6 +368,42 @@
             {% endfor %}
         </div>
     {% endif %}
+
+    <!-- ══════════════ RISK MATRIX ══════════════ -->
+    <h3 class="section-header mt-5">Risk Matrix</h3>
+    <div class="risk-matrix-wrapper mb-2">
+        <div class="risk-matrix-title">RISK MATRIX</div>
+        <div class="rm-impact-label">IMPACT</div>
+
+        <div class="rm-outer">
+            <span class="rm-prob-axis">PROBABILITY</span>
+            <div class="rm-grid">
+                <!-- Header row -->
+                <div class="rm-corner"></div>
+                <div class="rm-col-header">LOW</div>
+                <div class="rm-col-header">MEDIUM</div>
+                <div class="rm-col-header">HIGH</div>
+
+                <!-- HIGH probability row -->
+                <div class="rm-row-label">HIGH</div>
+                <div class="rm-cell rm-yellow">{{ risk_matrix.HIGH_LOW | join('<br>')|safe if risk_matrix.HIGH_LOW else '' }}</div>
+                <div class="rm-cell rm-orange">{{ risk_matrix.HIGH_MEDIUM | join('<br>')|safe if risk_matrix.HIGH_MEDIUM else '' }}</div>
+                <div class="rm-cell rm-red">{{ risk_matrix.HIGH_HIGH | join('<br>')|safe if risk_matrix.HIGH_HIGH else '' }}</div>
+
+                <!-- MEDIUM probability row -->
+                <div class="rm-row-label">MEDIUM</div>
+                <div class="rm-cell rm-green">{{ risk_matrix.MEDIUM_LOW | join('<br>')|safe if risk_matrix.MEDIUM_LOW else '' }}</div>
+                <div class="rm-cell rm-yellow">{{ risk_matrix.MEDIUM_MEDIUM | join('<br>')|safe if risk_matrix.MEDIUM_MEDIUM else '' }}</div>
+                <div class="rm-cell rm-orange">{{ risk_matrix.MEDIUM_HIGH | join('<br>')|safe if risk_matrix.MEDIUM_HIGH else '' }}</div>
+
+                <!-- LOW probability row -->
+                <div class="rm-row-label">LOW</div>
+                <div class="rm-cell rm-green">{{ risk_matrix.LOW_LOW | join('<br>')|safe if risk_matrix.LOW_LOW else '' }}</div>
+                <div class="rm-cell rm-green">{{ risk_matrix.LOW_MEDIUM | join('<br>')|safe if risk_matrix.LOW_MEDIUM else '' }}</div>
+                <div class="rm-cell rm-yellow">{{ risk_matrix.LOW_HIGH | join('<br>')|safe if risk_matrix.LOW_HIGH else '' }}</div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
