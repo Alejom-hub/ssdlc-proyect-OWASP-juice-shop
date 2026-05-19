@@ -1,0 +1,83 @@
+{
+    "version": "1.159.0",
+    "results": [],
+    "errors": [],
+    "paths": {
+        "scanned": [
+            "juice-shop/routes/login.ts"
+        ]
+    },
+    "time": {
+        "rules": [],
+        "rules_parse_time": 0.3535139560699463,
+        "profiling_times": {
+            "config_time": 0.6703858375549316,
+            "core_time": 0.7518658638000488,
+            "ignores_time": 0.00016546249389648438,
+            "total_time": 1.4314608573913574
+        },
+        "parsing_time": {
+            "total_time": 0.0,
+            "per_file_time": {
+                "mean": 0.0,
+                "std_dev": 0.0
+            },
+            "very_slow_stats": {
+                "time_ratio": 0.0,
+                "count_ratio": 0.0
+            },
+            "very_slow_files": []
+        },
+        "scanning_time": {
+            "total_time": 0.058672189712524414,
+            "per_file_time": {
+                "mean": 0.058672189712524414,
+                "std_dev": 0.0
+            },
+            "very_slow_stats": {
+                "time_ratio": 0.0,
+                "count_ratio": 0.0
+            },
+            "very_slow_files": []
+        },
+        "matching_time": {
+            "total_time": 0.0,
+            "per_file_and_rule_time": {
+                "mean": 0.0,
+                "std_dev": 0.0
+            },
+            "very_slow_stats": {
+                "time_ratio": 0.0,
+                "count_ratio": 0.0
+            },
+            "very_slow_rules_on_files": []
+        },
+        "tainting_time": {
+            "total_time": 0.0,
+            "per_def_and_rule_time": {
+                "mean": 0.0,
+                "std_dev": 0.0
+            },
+            "very_slow_stats": {
+                "time_ratio": 0.0,
+                "count_ratio": 0.0
+            },
+            "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [],
+        "prefiltering": {
+            "project_level_time": 0.0,
+            "file_level_time": 0.0,
+            "rules_with_project_prefilters_ratio": 0.0,
+            "rules_with_file_prefilters_ratio": 1.0,
+            "rules_selected_ratio": 0.04054054054054054,
+            "rules_matched_ratio": 0.04054054054054054
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 231238272
+    },
+    "engine_requested": "OSS",
+    "skipped_rules": [],
+    "profiling_results": []
+}
