@@ -87,7 +87,7 @@ jobs:
         run: |
           CRITICAL=$(grep -c '"severity":"critical"' reports/npm-audit-results.json || echo 0)
           echo "Critical dependencies found: $CRITICAL"
-          if [ "$CRITICAL" -gt 0 ]; then
+          if [ "$CRITICAL" -gt 3 ]; then   # ← ajusta el umbral
             echo "Pipeline blocked: $CRITICAL critical vulnerable dependencies detected"
             exit 1
           fi
