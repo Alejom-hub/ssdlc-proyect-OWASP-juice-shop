@@ -1,3 +1,4 @@
 [submodule "juice-shop"]
 	path = juice-shop
-	url = https://github.com/juice-shop/juice-shop.git
+	url = https://github.com/Alejom-hub/juice-shop.git
+	branch = security
