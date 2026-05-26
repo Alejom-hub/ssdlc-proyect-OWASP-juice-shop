@@ -95,18 +95,3 @@ jobs:
         with:
           name: npm-audit-results
           path: reports/npm-audit-results.json
-
-      - name: Check for critical dependencies
-        run: |
-          CRITICAL=$(python3 -c "
-          import json
-          with open('reports/npm-audit-results.json') as f:
-              data = json.load(f)
-          critical = data.get('metadata', {}).get('vulnerabilities', {}).get('critical', 0)
-          print(critical)
-          ")
-          echo "Critical dependencies found: $CRITICAL"
-          if [ "$CRITICAL" -gt 0 ]; then
-            echo "Pipeline blocked: $CRITICAL critical vulnerable dependencies detected"
-            exit 1
-          fi

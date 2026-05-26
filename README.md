@@ -19,6 +19,11 @@ Furthermore, we are using Juice-Shop to discover risks and vulnerabilities that 
   ```bash
   export PATH=$PATH:/home/codespace/.local/lib/python3.12/site-packages/bin
   ```
+- Ensure the JWT/HMAC environment variables are set before starting Juice Shop:
+  ```bash
+  export HMAC_SECRET="$(node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\")"
+  export JWT_PRIVATE_KEY="$(printf '%s\n' '-----BEGIN RSA PRIVATE KEY-----' 'YOUR_KEY_CONTENT' '-----END RSA PRIVATE KEY-----')"
+  ```
 - Downloads and initializes the Juice Shop submodule by running:
   ```bash
   git submodule update --init --recursive
